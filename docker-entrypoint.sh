@@ -50,7 +50,9 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 	tls_www_server
 	EOSRV
 	certtool --generate-certificate --load-privkey server-key.pem --load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem --template server.tmpl --outfile server-cert.pem
-
+	cp ca-cert.pem /etc/ssl/private/my-ca-cert.pem
+	cp server-cert.pem /etc/ssl/private/my-server-cert.pem
+	cp server-key.pem /etc/ssl/private/my-server-key.pem
 	# Create a test user
 	if [ -z "$NO_TEST_USER" ] && [ ! -f /etc/ocserv/ocpasswd ]; then
 		echo "Create test user 'test' with password 'test'"
