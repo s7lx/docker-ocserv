@@ -70,9 +70,9 @@ RUN set -x \
 	&& sed -i 's/192.168.1.2/8.8.8.8/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/^route/#route/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/#\(cisco.*\)/\1/' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^try-mtu-discovery = /{s/false/true/}' /etc/ocserv/ocserv.conf \
 	&& cat /tmp/route.txt >> /etc/ocserv/ocserv.conf \
 	&& echo "output-buffer = 23000" >> /etc/ocserv/ocserv.conf \
-	&& echo "try-mtu-discovery = true" >> /etc/ocserv/ocserv.conf \
 	&& rm -fr /tmp/route.txt
 
 WORKDIR /etc/ocserv
